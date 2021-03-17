@@ -1,0 +1,11 @@
+name: Filter
+version: 1.2.7
+main: com.fiveeus.filter.Main
+author: 5EUS
+api-version: 1.16
+depend: [Vault]
+
+commands:
+  filter:
+    description: Add commands or messages to the filter.
+    usage: <command> <command/message> <add/remove> <string>
