@@ -4,6 +4,7 @@ import com.fiveeus.filter.Main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,14 +35,22 @@ public class Chat implements Listener {
                 String line = scanner.nextLine();
                 ++var6;
                 if (containsIgnoreCase(message, line)) {
-                    e.setCancelled(true);
-                    player.sendMessage(this.prefix + "No naughty words!");
+                    message = message.replace(line, fillString(line.length(), '*'));
+                    e.setMessage(message);
                 }
             }
         } catch (FileNotFoundException var8) {
             Main.createFilterFile();
         }
 
+    }
+
+    public static String fillString(int count,char c) {
+        StringBuilder sb = new StringBuilder( count );
+        for( int i=0; i<count; i++ ) {
+            sb.append( c );
+        }
+        return sb.toString();
     }
 
     public static boolean containsIgnoreCase(String str, String searchStr) {
